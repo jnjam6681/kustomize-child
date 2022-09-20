@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-    - host: platform-api-dev-dir.sarabarn.com
+    - host: example.com
       http:
         paths:
           - backend:

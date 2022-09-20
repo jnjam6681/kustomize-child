@@ -6,10 +6,10 @@ resources:
 - ./service.yaml
 - ./ingress.yaml
 
-commonLabels:
-  environment: develop
-  team: platform
-  tier: backend
+# commonLabels:
+#   environment: develop
+#   team: platform
+#   tier: backend
 
 images:
 - name: kustomize-02
