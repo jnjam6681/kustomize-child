@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ./deployment.yaml
+- ./service.yaml
+- ./ingress.yaml
+
+commonLabels:
+  environment: develop
+  team: platform
+  tier: backend
+
+images:
+- name: kustomize-02
+  newName: 813046145810.dkr.ecr.ap-southeast-1.amazonaws.com/kustomize-02
+  newTag: 47-a857ce3
+
+patches:
+- path: ./overlay/deployment.yaml
+  target:
+    kind: Deployment
+
+secretGenerator:
+- envs:
+  - secret/kustomize-02
+  name: kustomize-02

@@ -1,0 +1,40 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: kustomize-02
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: kustomize-02
+      tier: backend
+  template:
+    metadata:
+      name: kustomize-02
+      labels:
+        app: kustomize-02
+        tier: backend
+    spec:
+      containers:
+      - name: app
+        image: kustomize-02
+        ports:
+        - name: http-port
+          containerPort: 1323
+        resources:
+          limits:
+            memory: "40Mi"
+            cpu: "20m"
+        readinessProbe:
+          initialDelaySeconds: 15
+          periodSeconds: 30
+          timeoutSeconds: 10
+          httpGet:
+            path: /healthz
+            port: http-port

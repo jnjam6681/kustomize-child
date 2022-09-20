@@ -1,0 +1,41 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: kustomize-02
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        env:
+        - name: APP_ENV
+          value: "develop"
+        - name: APP_PORT
+          value: "1323"
+        - name: APP_DEBUG
+          value: "true"
+        - name: AWS_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: pf-variant
+              key: AWS_SECRET
+        - name: AWS_REGION
+          valueFrom:
+            secretKeyRef:
+              name: pf-secret
+              key: AWS_REGION
+        - name: AWS_VERSTION_STAGE
+          valueFrom:
+            secretKeyRef:
+              name: pf-secret
+              key: AWS_VERSTION_STAGE
+        - name: AWS_CREDENTIAL_ID
+          valueFrom:
+            secretKeyRef:
+              name: pf-secret
+              key: AWS_CREDENTIAL_ID
+        - name: AWS_CREDENTIAL_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pf-secret
+              key: AWS_CREDENTIAL_KEY

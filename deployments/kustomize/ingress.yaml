@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: kustomize-02
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: platform-api-dev-dir.sarabarn.com
+      http:
+        paths:
+          - backend:
+              serviceName: kustomize-02
+              servicePort: 80
+            path: /kustomize-02(/|$)(.*)
