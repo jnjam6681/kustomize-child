@@ -21,7 +21,7 @@ patches:
   target:
     kind: Deployment
 
-secretGenerator:
-- envs:
-  - secret/kustomize-02
-  name: kustomize-02
+# secretGenerator:
+# - envs:
+#   - secret/kustomize-02
+#   name: kustomize-02
