@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: kustomize--
+build:
+  artifacts:
+  # image name from image registy not kustomize
+  - image: jnjam6681/kustomize-02
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kustomize:
+    paths:
+    - deployments/kustomize
